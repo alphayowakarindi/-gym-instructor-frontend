@@ -3,11 +3,13 @@ import image from './images/yoga.jpg';
 import SociaMedia from './SociaMedia';
 
 const Services = () => (
-  <div className="services ps-3 d-flex justify-content-center align-items-center flex-column">
+  <div className="services d-flex justify-content-center align-items-center flex-column">
     <p className="fw-bold h3">Most In Demand Services</p>
     <p className="h6 fst-italic">Attain fitness with us</p>
 
-    <div className="service mt-5 d-flex text-center">
+    <div className="service mt-5 d-flex text-center align-items-center">
+      <buton type="button" className=" prev-btn btn btn-secondary me-5">Next</buton>
+
       <div className="card mx-3" style={{ width: '18rem' }}>
         <img src={image} alt="yogo images" />
         <div className="card-body">
@@ -41,6 +43,7 @@ const Services = () => (
           </div>
         </div>
       </div>
+      <buton type="button" className=" next-btn ms-5">Next</buton>
     </div>
 
   </div>
