@@ -1,0 +1,19 @@
+.App-header {
+  height: 100vh;
+  border-right: 1px solid black;
+}
+
+.logo {
+  margin-top: 3rem;
+}
+
+.display-section {
+  padding-top: 5rem;
+}
+
+.social-icons {
+  display: flex;
+  list-style: none;
+  gap: 4px;
+  padding: 0;
+}
