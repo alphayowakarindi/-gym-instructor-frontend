@@ -1,3 +1,11 @@
-const Reservations = () => (<h1>My Reservations Page</h1>);
+import HamburgerMenu from '../components/hamburgerMenu';
+
+const Reservations = () => (
+  <>
+    <HamburgerMenu />
+    <h1>Reservations Page</h1>
+  </>
+
+);
 
 export default Reservations;

@@ -1,3 +1,11 @@
-const Register = () => (<h1>Register Page</h1>);
+import HamburgerMenu from '../components/hamburgerMenu';
+
+const Register = () => (
+  <>
+    <HamburgerMenu />
+    <h1>Register Page</h1>
+  </>
+
+);
 
 export default Register;

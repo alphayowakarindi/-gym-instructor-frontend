@@ -1,5 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useSelector } from 'react-redux';
+
 import AddService from './pages/AddService';
 import DeleteService from './pages/DeleteService';
 import Home from './pages/Home';
@@ -12,14 +14,16 @@ import Register from './pages/Register';
 import Login from './pages/Login';
 
 function App() {
+  const mainPartialScreen = useSelector((store) => store.classStatus.mainPartialScreen);
+
   return (
     <div className="App d-flex">
       {/* header */}
       <NavPannel />
       {/* routes */}
-      <div className="display-section">
+      <div className={`main ${mainPartialScreen ? 'main-partial-screen' : ''}`}>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route exact path="/" element={<Home />} />
           <Route path="/services" element={<Services />} />
           <Route path="/reserve" element={<Reserve />} />
           <Route path="/reservations" element={<Reservations />} />
