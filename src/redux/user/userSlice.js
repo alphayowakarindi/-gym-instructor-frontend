@@ -1,44 +1,50 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
-const { REACT_APP_BASE_URL } = process.env
+const { REACT_APP_BASE_URL } = process.env;
 
 export const registerUser = createAsyncThunk(
   'user/registerUser',
-  async({full_name, username, email, password}, thunkAPI) => {
+  async ({
+    fullName, username, email, password,
+  }, thunkAPI) => {
     try {
-        const response = await fetch(
-            `${REACT_APP_BASE_URL}/users`,
-            {
-                method: 'POST',
-                headers: {
-                    Accept: 'application/json',
-                    'Content-Type': 'application/json',
-                },
-                body:JSON.stringify({
-                    full_name,
-                    username,
-                    email,
-                    password
-                }),
+      const response = await fetch(
+        `${REACT_APP_BASE_URL}/users`,
+        {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            user: {
+            fullName,
+            username,
+            email,
+            password,
             }
-        );
-        let data = await response.json();
-        console.log('data', data);
+          }),
+        },
+      );
+      const data = await response.json();
+      console.log('data', data);
     } catch (error) {
-        console.log('Error', e.response.data);
+      console.log('Error', error.response.data);
     }
-  }
-)
+  },
+);
 
 const initialState = {
-  full_name:'',
-  username:'',
-  email:'',
-  password:'',
-  errorMessage:'',
-  pending:true,
-  error:false
-}
+  user: {
+    fullName: '',
+    username: '',
+    email: '',
+    password: '',
+    errorMessage: '',
+    pending: true,
+    error: false,
+  }
+};
 
 const userSlice = createSlice({
   name: 'user',
@@ -46,23 +52,26 @@ const userSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-    .addCase(registerUser.pending, (state, action) =>{
-      state.pending = true;
-      state.error = false;
-    })
-    .addCase(registerUser.fulfilled, (state, action) =>{
-      state.pending = false;
-      state.error = false;
-      state.full_name = action.payload.user.full_name
-      state.username = action.payload.user.username
-      state.email = action.payload.email
-      state.password = action.payload.user.password
-    })
-    .addCase(registerUser.rejected, (state, action) =>{
-      state.pending = false;
-      state.error = true;
-      state.errorMessage = action.payload.message
-    })
+      .addCase(registerUser.pending, (state) => {
+        const newState = state;
+        newState.pending = true;
+        newState.error = false;
+      })
+      .addCase(registerUser.fulfilled, (state, action) => {
+        const newState = state;
+        newState.pending = false;
+        newState.error = false;
+        newState.fullName = action.payload.user.fullName;
+        newState.username = action.payload.user.username;
+        newState.email = action.payload.email;
+        newState.password = action.payload.user.password;
+      })
+      .addCase(registerUser.rejected, (state, action) => {
+        const newState = state;
+        newState.pending = false;
+        newState.error = true;
+        newState.errorMessage = action.payload.message;
+      });
   },
 });
 export const userSelector = (state) => state.user;
