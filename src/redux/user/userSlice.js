@@ -18,11 +18,11 @@ export const registerUser = createAsyncThunk(
           },
           body: JSON.stringify({
             user: {
-            fullName,
-            username,
-            email,
-            password,
-            }
+              fullName,
+              username,
+              email,
+              password,
+            },
           }),
         },
       );
@@ -43,7 +43,7 @@ const initialState = {
     errorMessage: '',
     pending: true,
     error: false,
-  }
+  },
 };
 
 const userSlice = createSlice({
