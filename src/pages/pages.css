@@ -13,3 +13,35 @@
   padding: 20px 50px 20px 30px;
   border-radius: 0 50px 50px 0;
 }
+
+.service-details {
+  width: 100%;
+}
+
+.spining-img {
+  width: 30%;
+}
+
+.reserve {
+  outline: none;
+  border: none;
+  border-radius: 25px;
+  padding: 10px;
+  background-color: rgb(214, 214, 28);
+  margin-top: 5rem;
+  cursor: pointer;
+}
+
+.explore-btn {
+  background-color: rgb(214, 214, 28);
+  border-radius: 40% 0% 0% 40%;
+  padding: 10px 0;
+  color: white;
+  outline: none;
+  border: none;
+}
+
+.text-dark {
+  width: 25px;
+  color: red;
+}
