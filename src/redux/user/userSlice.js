@@ -28,8 +28,9 @@ export const registerUser = createAsyncThunk(
       );
       const data = await response.json();
       console.log('data', data);
+      return data;
     } catch (error) {
-      console.log('Error', error.response.data);
+      console.log('Error', error.response.data[0]);
     }
   },
 );
@@ -61,16 +62,13 @@ const userSlice = createSlice({
         const newState = state;
         newState.pending = false;
         newState.error = false;
-        newState.fullName = action.payload.user.fullName;
-        newState.username = action.payload.user.username;
-        newState.email = action.payload.email;
-        newState.password = action.payload.user.password;
+        newState.user = action.payload;
       })
       .addCase(registerUser.rejected, (state, action) => {
         const newState = state;
         newState.pending = false;
         newState.error = true;
-        newState.errorMessage = action.payload.message;
+        newState.errorMessage = action.payload.errors[0];
       });
   },
 });
