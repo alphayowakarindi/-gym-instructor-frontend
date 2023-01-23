@@ -27,10 +27,14 @@ export const registerUser = createAsyncThunk(
         },
       );
       const data = await response.json();
-      console.log('data', data);
-      return data;
+      console.log('data', data.token);
+      if (response.status === 201) {
+        localStorage.setItem('token', data.token);
+        return data;
+      }
+      return thunkAPI.rejectWithValue(data);
     } catch (error) {
-      console.log('Error', error.response.data[0]);
+      console.log('Error', error);
     }
   },
 );
@@ -68,7 +72,7 @@ const userSlice = createSlice({
         const newState = state;
         newState.pending = false;
         newState.error = true;
-        newState.errorMessage = action.payload.errors[0];
+        newState.errorMessage = action.payload.errors;
       });
   },
 });
