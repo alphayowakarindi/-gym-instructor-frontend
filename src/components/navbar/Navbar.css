@@ -1,0 +1,45 @@
+.App-header {
+  border-right: 1px solid #f2f2f2;
+  width: 180px;
+  height: 100%;
+  position: fixed;
+  left: -300px;
+  transition: 0.5s;
+}
+
+.logo {
+  margin-top: 3rem;
+}
+
+.display-section {
+  /* padding-top: 5rem; */
+}
+
+.social-icons {
+  display: flex;
+  list-style: none;
+  gap: 4px;
+  padding: 0;
+}
+
+.nav-link {
+  font-weight: 900;
+}
+
+.copyright {
+  font-size: 12px;
+}
+
+.active {
+  background-color: rgb(151, 190, 17);
+  color: #fff !important;
+}
+
+.footer {
+  position: fixed;
+  bottom: 15px;
+}
+
+.nav-active {
+  left: 0;
+}
