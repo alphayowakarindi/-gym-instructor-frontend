@@ -11,6 +11,7 @@ import {
   ArrowRightOnRectangleIcon,
 } from '@heroicons/react/24/solid';
 
+import logo from '../../assets/logo.jpg'
 const Sidenav = () => {
   const user =[]
 
@@ -64,14 +65,21 @@ const Sidenav = () => {
             Sign In
 
           </NavLink>
-          <NavLink
-            to="/login"
-            className="md:hidden py-5 w-full flex justify-center bg-blue-700 text-white hover:bg-blue-800"
-          >
-            <ArrowRightOnRectangleIcon className="h-5 w-5" />
-          </NavLink>
+
         </div>
       )}
+      <div
+          className="flex items-center justify-center w-full md:py-5 border-b shadow-md"
+        >
+          <NavLink
+            to="/"
+            className="hidden md:block bg-grey-200 font-medium rounded-lg text-sm px-5 text-center "
+          >
+           <img src={logo} alt="logo-img" />
+
+          </NavLink>
+         
+        </div>
 
       <ul className="w-full mt-4">
         {navItems.map((element) => (
