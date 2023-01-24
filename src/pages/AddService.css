@@ -4,6 +4,7 @@
   min-height: 100vh;
   margin-top: -1.7rem;
 }
+
 #add-service input,
 textarea {
   width: 100%;
@@ -16,6 +17,7 @@ textarea {
   font-size: 16px;
   background-color: #fff;
 }
+
 #add-service h1 {
   text-align: center;
   padding-top: 1.7rem;
@@ -26,6 +28,7 @@ textarea {
   display: grid;
   justify-content: center;
 }
+
 #add-service form input[type='submit'] {
   background-color: rgb(151, 190, 17);
   color: #fff;
@@ -34,6 +37,7 @@ textarea {
   cursor: pointer;
   transition: 0.3s ease;
 }
+
 #add-service form input[type='submit']:hover {
   transform: translateY(-4px);
   background-color: rgba(151, 190, 17, 0.9);
