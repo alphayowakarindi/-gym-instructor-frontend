@@ -25,8 +25,7 @@ const AddService = () => {
     fetch('http://127.0.0.1:8080/api/v1/services', {
       method: 'POST',
       headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
+        "Authorization": localStorage.getItem("token"),
       },
       body: formData,
     }).then((response) => {
