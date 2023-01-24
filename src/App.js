@@ -17,7 +17,7 @@ function App() {
   const mainPartialScreen = useSelector((store) => store.classStatus.mainPartialScreen);
 
   return (
-    <div className="App d-flex">
+    <div className="App">
       {/* header */}
       <NavPannel />
       {/* routes */}
