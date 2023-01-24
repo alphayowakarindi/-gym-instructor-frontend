@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import HamburgerMenu from '../components/hamburgerMenu';
-import { registerUser } from '../redux/user/userSlice';
+import { registerUser, userSelector } from '../redux/user/userSlice';
 
 const Register = () => {
   const [state, setState] = useState({
@@ -12,6 +12,8 @@ const Register = () => {
     password: '',
   });
   const dispatch = useDispatch();
+  const user = useSelector(userSelector);
+  console.log('USERER', user);
   const handleChange = (e) => {
     setState({
       ...state,

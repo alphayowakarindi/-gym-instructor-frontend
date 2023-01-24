@@ -27,14 +27,14 @@ export const registerUser = createAsyncThunk(
         },
       );
       const data = await response.json();
-      console.log('data', data.token);
       if (response.status === 201) {
         localStorage.setItem('token', data.token);
-        return data;
+        return thunkAPI.fulfillWithValue(data);
       }
-      return thunkAPI.rejectWithValue(data);
+      const errors = data.errors.map((error) => error);
+      return thunkAPI.rejectWithValue(errors);
     } catch (error) {
-      console.log('Error', error);
+      throw thunkAPI.rejectWithValue(error.message);
     }
   },
 );
@@ -44,10 +44,9 @@ const initialState = {
     fullName: '',
     username: '',
     email: '',
-    password: '',
-    errorMessage: '',
     pending: true,
     error: false,
+    errorMessage: '',
   },
 };
 
@@ -58,21 +57,24 @@ const userSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(registerUser.pending, (state) => {
-        const newState = state;
+        const newState = state.user;
         newState.pending = true;
         newState.error = false;
       })
       .addCase(registerUser.fulfilled, (state, action) => {
-        const newState = state;
+        const newState = state.user;
         newState.pending = false;
         newState.error = false;
-        newState.user = action.payload;
+        newState.fullName = action.payload.user.fullName;
+        newState.email = action.payload.user.email;
+        newState.username = action.payload.user.username;
       })
       .addCase(registerUser.rejected, (state, action) => {
-        const newState = state;
+        const newState = state.user;
         newState.pending = false;
         newState.error = true;
-        newState.errorMessage = action.payload.errors;
+        const err = action.payload.map((e) => e);
+        newState.errorMessage = err;
       });
   },
 });
