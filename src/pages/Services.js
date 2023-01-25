@@ -1,6 +1,7 @@
 import './pages.css';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { fetchServices } from '../redux/reducers/services';
 import SociaMedia from './SociaMedia';
 import HamburgerMenu from '../components/hamburgerMenu';
@@ -24,17 +25,19 @@ const Services = () => {
         <div className="service mt-5 d-flex text-center align-items-center">
           <buton type="button" className=" prev-btn btn btn-secondary me-5">Next</buton>
           {services.map((service) => (
-            <div className="card mx-3" style={{ width: '18rem' }} key={service.id}>
-              <img src={service.image.url} alt="yogo images" />
-              <div className="card-body">
-                <h5 className="card-title fw-bold">{service.title}</h5>
-                <p className="card-text">{service.description}</p>
-                <div>
-                  {' '}
-                  <SociaMedia />
+            <Link to={`/details/${service.id}`} key={service.id} className="Link-toDetails">
+              <div className="card mx-3" style={{ width: '18rem' }}>
+                <img src={service.image.url} alt="yogo images" />
+                <div className="card-body">
+                  <h5 className="card-title fw-bold">{service.title}</h5>
+                  <p className="card-text">{service.description}</p>
+                  <div>
+                    {' '}
+                    <SociaMedia />
+                  </div>
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
           <buton type="button" className=" next-btn ms-5">Next</buton>
         </div>

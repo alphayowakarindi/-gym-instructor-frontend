@@ -28,7 +28,7 @@ function App() {
           <Route path="/services" element={<Services />} />
           <Route path="/reserve" element={<Reserve />} />
           <Route path="/reservations" element={<Reservations />} />
-          <Route path="/service-details" element={<ServiceDetails />} />
+          <Route path="/details/:id" element={<ServiceDetails />} />
           <Route path="/services/create" element={<AddService />} />
           <Route path="/delete-service" element={<DeleteService />} />
           <Route path="/register" element={<Register />} />

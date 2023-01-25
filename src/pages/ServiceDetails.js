@@ -1,12 +1,19 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import { AiOutlineSchedule } from 'react-icons/ai';
 import { FaAngleDoubleRight, FaAngleLeft } from 'react-icons/fa';
-import image from './images/yoga.jpg';
 import HamburgerMenu from '../components/hamburgerMenu';
 import icon from './images/icon.png';
+import { fetchService } from '../redux/reducers/services';
 
 function ServiceDetails() {
+  const { id } = useParams();
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchService(id));
+  }, [id]);
+  const service = useSelector((store) => store.services);
   return (
     <>
       <HamburgerMenu />
@@ -14,7 +21,7 @@ function ServiceDetails() {
         <div className="raw d-flex py-5">
           <div className="col-lg-6 col-sm-3 d-flex flex-column justify-content-between">
             <div className="images-display">
-              <img src={image} alt="wel" className="img-thumbnail" />
+              <img src={service.image} alt="wel" className="img-thumbnail" />
             </div>
             <div>
               <button type="button" className="explore-btn">
@@ -27,19 +34,22 @@ function ServiceDetails() {
           <div className="col-lg-6 col-sm-3">
             <form className="d-flex flex-column">
               <div className="d-flex justify-content-between">
-                <span className="h3">Yoga</span>
+                <span className="h3">{service.title}</span>
               </div>
               <div className="d-flex justify-content-between bg-light p-2 my-1">
                 <span>Class Time</span>
-                <span>5:00pm</span>
+                <span>{service.class_time}</span>
               </div>
               <div className="d-flex justify-content-between p-2 my-1">
                 <span>Amount Payable</span>
-                <span>$500</span>
+                <span>
+                  $
+                  {service.fee}
+                </span>
               </div>
               <div className="d-flex justify-content-between border bg-gray-100 px-2 py-2">
                 <span>Stay Duration</span>
-                <span>3 Months</span>
+                <span>{service.duration}</span>
               </div>
               <div className="d-flex align-items-end flex-column">
                 <span className="p-3">

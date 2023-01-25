@@ -45,3 +45,8 @@
   width: 25px;
   color: red;
 }
+
+.Link-toDetails {
+  text-decoration: none;
+  color: black;
+}

@@ -5,7 +5,6 @@ import HamburgerMenu from '../components/hamburgerMenu';
 import { createReserve } from '../redux/reducers/reservation';
 
 const Reserve = () => {
-  
   const user = { id: 1, username: 'Gordon' };
   const services = [
     { id: 1, name: 'yogo' },
