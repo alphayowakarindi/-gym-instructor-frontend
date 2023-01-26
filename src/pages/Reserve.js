@@ -1,21 +1,19 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import HamburgerMenu from '../components/hamburgerMenu';
-import { createReserve } from '../redux/reducers/reservation';
 
 const Reserve = () => {
-  const user = { id: 1, username: 'Gordon' };
+  const service = useSelector((store) => store.services);
   const services = [
-    { id: 1, name: 'yogo' },
-    { id: 2, name: 'kumfu' },
-    { id: 3, name: 'karate' },
+    { id: 1, title: 'Yoga' },
+    { id: 2, title: 'weght lifting' },
   ];
-
+  const user = useSelector((store) => store.user);
+  console.log(service);
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const [value, setValue] = useState({
-    service_id: services[0].id,
+    service_id: service.id,
     city: '',
     start_date: '',
   });
@@ -30,7 +28,7 @@ const Reserve = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    if (!user) {
+    if (user.length === 0) {
       navigate('/login');
     } else {
       const userId = user.id;
@@ -38,14 +36,15 @@ const Reserve = () => {
         ...value,
         user_id: userId,
       };
-      dispatch(createReserve(currentValue).then((payload) => {
-        if (payload.status) {
-          document.querySelector('#create-form').reset();
-          document.querySelector('.message-info').textContent = 'The Service has been reserved!';
-        } else {
-          document.querySelector('.message-info').textContent = 'This service is already reserved!';
-        }
-      }));
+      fetch('http://127.0.0.1:8080/api/v1/reservations', {
+        method: 'POST',
+        headers: {
+          Authorization: localStorage.getItem('token'),
+        },
+        body: currentValue,
+      }).then((response) => {
+        console.log(response);
+      }).catch((error) => console.log(error));
     }
   };
 
@@ -60,7 +59,7 @@ const Reserve = () => {
           <p className="h3 text-bold pb-2">Reservation Form</p>
           <p className="message-info" />
           <select
-            defaultValue={services.length === 0 ? 'default' : services[0].id}
+            defaultValue={service.length === 0 ? 'default' : service.id}
             className="m-2 p-2 w-100"
             onChange={updateValue}
             id="service_id"
@@ -70,7 +69,7 @@ const Reserve = () => {
               Choose Services
             </option>
             {services.map((service) => (
-              <option key={service.id} value={service.id}>{ service.name }</option>
+              <option key={service.id} value={service.id}>{ service.title }</option>
             ))}
           </select>
           <input type="text" id="city" name="city" placeholder="Your City" className="form-control p-2 m-2" required onChange={updateValue} />
