@@ -1,0 +1,44 @@
+#add-service {
+  padding: 0 1rem;
+  background-color: #efefef;
+  min-height: 100vh;
+  margin-top: -1.7rem;
+}
+
+#add-service input,
+textarea {
+  width: 100%;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 12px;
+  font-size: 16px;
+  background-color: #fff;
+}
+
+#add-service h1 {
+  text-align: center;
+  padding-top: 1.7rem;
+  margin-bottom: 1.2rem;
+}
+
+#add-service form {
+  display: grid;
+  justify-content: center;
+}
+
+#add-service form input[type='submit'] {
+  background-color: rgb(151, 190, 17);
+  color: #fff;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+#add-service form input[type='submit']:hover {
+  transform: translateY(-4px);
+  background-color: rgba(151, 190, 17, 0.9);
+}
